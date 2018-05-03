@@ -12,7 +12,7 @@ apk update
 
 # Install Python, pip, setuptools and bind aliases
 # Python from Alpine repo is smaller vs. official Docker image
-apk add python3 
+apk add python3=3.6.3-r9
 python3 -m ensurepip 
 rm -rf /usr/lib/python*/ensurepip 
 pip3 install --upgrade pip setuptools 
@@ -28,19 +28,19 @@ fi
 # Build dependencies for Python packages
 apk add \
     --virtual=.shared-build-dependencies \
-    file binutils \
-    musl-dev python3-dev
+    file binutils musl-dev \
+    python3-dev=3.6.3-r9
 
 apk add \
     --virtual=.scipy-build-dependencies \
-    g++ gfortran openblas-dev 
+    g++ gfortran openblas-dev
 
 apk add \
     --virtual=.scipy-runtime-dependencies \
-    libstdc++ openblas 
+    libstdc++ openblas
     
 # Numpy compilation requires xlocale.h
-ln -s locale.h /usr/include/xlocale.h 
+ln -s locale.h /usr/include/xlocale.h   
 
 # Download, build, install Python packages
 pip install --no-cache-dir numpy scipy 
