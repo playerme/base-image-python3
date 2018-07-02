@@ -14,7 +14,6 @@ apk update
 # Python from Alpine repo is smaller vs. official Docker image
 apk add python3=3.6.3-r9
 python3 -m ensurepip 
-rm -rf /usr/lib/python*/ensurepip 
 pip3 install --upgrade pip setuptools 
 
 if [ ! -e /usr/bin/pip ]
