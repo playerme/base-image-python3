@@ -42,7 +42,7 @@ apk add \
 ln -s locale.h /usr/include/xlocale.h   
 
 # Download, build, install Python packages
-pip install --no-build-isolation --no-cache-dir numpy scipy pandas
+pip install --no-build-isolation --no-cache-dir numpy==1.14.2 scipy==1.0.1 pandas==0.22.0
 
 rm /usr/include/xlocale.h 
 
