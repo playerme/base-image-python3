@@ -10,9 +10,9 @@ echo "http://dl-cdn.alpinelinux.org/alpine/v3.7/main/" > /etc/apk/repositories
 echo "http://dl-cdn.alpinelinux.org/alpine/v3.7/community/" >> /etc/apk/repositories 
 apk update 
 
-# Install Python, pip, setuptools and bind aliases
+# Install Python, pip, setuptools, bind aliases and dev package
 # Python from Alpine repo is smaller vs. official Docker image
-apk add python3=3.6.3-r9
+apk add python3=3.6.5-r0 python3-dev=3.6.5-r0
 python3 -m ensurepip 
 pip3 install --upgrade pip setuptools 
 
@@ -27,8 +27,7 @@ fi
 # Build dependencies for Python packages
 apk add \
     --virtual=.shared-build-dependencies \
-    file binutils musl-dev \
-    python3-dev=3.6.3-r9
+    file binutils musl-dev
 
 apk add \
     --virtual=.scipy-build-dependencies \
@@ -55,4 +54,3 @@ apk del .scipy-build-dependencies
 apk del .shared-build-dependencies
 
 rm -rf /root/.cache/* 
-rm -rf /var/cache/apk/*
